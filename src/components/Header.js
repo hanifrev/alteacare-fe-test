@@ -1,9 +1,14 @@
 import React from "react";
 
-const Header = ({ data, setName, setHospital }) => {
+const Header = ({ data, setName, setHospital, setSpecialization }) => {
   const hospitalList = [
     "All",
     ...new Set(data && data.map((x) => x.hospital[0].name)),
+  ];
+
+  const specializationList = [
+    "All",
+    ...new Set(data && data.map((x) => x.specialization.name)),
   ];
 
   return (
@@ -25,7 +30,7 @@ const Header = ({ data, setName, setHospital }) => {
           }}
         >
           <option value="" disabled hidden className="">
-            Select Your Answer
+            Select Hospital
           </option>
           {hospitalList &&
             hospitalList.map((item, index) => {
@@ -37,7 +42,23 @@ const Header = ({ data, setName, setHospital }) => {
             })}
         </select>
 
-        <input />
+        <select
+          onChange={(e) => {
+            setSpecialization(e.target.value);
+          }}
+        >
+          <option value="" disabled hidden className="">
+            Select Specialization
+          </option>
+          {specializationList &&
+            specializationList.map((item, index) => {
+              return (
+                <option value={item} key={index}>
+                  {item}
+                </option>
+              );
+            })}
+        </select>
       </div>
     </div>
   );

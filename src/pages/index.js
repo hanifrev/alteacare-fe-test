@@ -7,12 +7,16 @@ const index = ({ data }) => {
   const doctors = data;
   const [name, setName] = useState("");
   const [hospital, setHospital] = useState("");
-
-  console.log(hospital);
+  const [specialization, setSpecialization] = useState("");
 
   return (
     <>
-      <Header data={data} setName={setName} setHospital={setHospital} />
+      <Header
+        data={data}
+        setName={setName}
+        setHospital={setHospital}
+        setSpecialization={setSpecialization}
+      />
       <div className="flex flex-wrap justify-center lg:justify-between gap-16 pt-8 px-6 overflow-hidden">
         {doctors
           .filter((val) => {
@@ -26,6 +30,13 @@ const index = ({ data }) => {
             if (hospital == "" || hospital == "All") {
               return val;
             } else if (val.hospital[0].name == hospital) {
+              return val;
+            }
+          })
+          .filter((val) => {
+            if (specialization == "" || specialization == "All") {
+              return val;
+            } else if (val.specialization.name == specialization) {
               return val;
             }
           })
