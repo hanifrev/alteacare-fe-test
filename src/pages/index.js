@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import DoctorsList from "../components/DoctorsList";
 import Header from "../components/Header";
 
-const index = ({ data }) => {
+const Index = ({ data }) => {
   const doctors = data;
   const [name, setName] = useState("");
   const [hospital, setHospital] = useState("");
@@ -58,7 +58,7 @@ const index = ({ data }) => {
   );
 };
 
-export default index;
+export default Index;
 
 export async function getStaticProps() {
   const { data } = await axios.get(
