@@ -1,0 +1,12 @@
+#doctorsList {
+  width: 100%;
+  max-width: 600px;
+  .image-container {
+    min-width: 100px;
+    padding-right: 0rem;
+    @screen lg {
+      min-width: 200px;
+      padding-right: 2rem;
+    }
+  }
+}
