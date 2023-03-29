@@ -4,27 +4,44 @@ import DoctorsList from "../components/DoctorsList";
 import Header from "../components/Header";
 
 const index = ({ data }) => {
-  console.log(data);
   const doctors = data;
-  // const [doctors, setDoctors] = useState(data);
+  const [name, setName] = useState("");
+  const [hospital, setHospital] = useState("");
+
+  console.log(hospital);
 
   return (
     <>
-      <Header />
-      <div className="flex flex-wrap justify-between gap-16 pt-8 px-6 overflow-hidden">
-        {doctors.map((item) => {
-          return (
-            <DoctorsList
-              key={item.doctor_id}
-              name={item.name}
-              hospital={item.hospital[0].name}
-              specialization={item.specialization.name}
-              about={item.about_preview}
-              price={item.price.formatted}
-              photo={item.photo.formats.medium}
-            />
-          );
-        })}
+      <Header data={data} setName={setName} setHospital={setHospital} />
+      <div className="flex flex-wrap justify-center lg:justify-between gap-16 pt-8 px-6 overflow-hidden">
+        {doctors
+          .filter((val) => {
+            if (name == "") {
+              return val;
+            } else if (val.name.toLowerCase().includes(name.toLowerCase())) {
+              return val;
+            }
+          })
+          .filter((val) => {
+            if (hospital == "" || hospital == "All") {
+              return val;
+            } else if (val.hospital[0].name == hospital) {
+              return val;
+            }
+          })
+          .map((item) => {
+            return (
+              <DoctorsList
+                key={item.doctor_id}
+                name={item.name}
+                hospital={item.hospital[0].name}
+                specialization={item.specialization.name}
+                about={item.about_preview}
+                price={item.price.formatted}
+                photo={item.photo.formats.medium}
+              />
+            );
+          })}
       </div>
     </>
   );
