@@ -18,7 +18,7 @@ const Header = ({ data, setName, setHospital, setSpecialization }) => {
         <input
           className=""
           type="text"
-          placeholder="Search"
+          placeholder="Search Doctor"
           onChange={(e) => {
             setName(e.target.value);
           }}
@@ -29,7 +29,7 @@ const Header = ({ data, setName, setHospital, setSpecialization }) => {
             setHospital(e.target.value);
           }}
         >
-          <option value="" disabled hidden className="">
+          <option selected="true" hidden value="" disabled className="">
             Select Hospital
           </option>
           {hospitalList &&
@@ -47,7 +47,7 @@ const Header = ({ data, setName, setHospital, setSpecialization }) => {
             setSpecialization(e.target.value);
           }}
         >
-          <option value="" disabled hidden className="">
+          <option selected="true" hidden value="" disabled className="">
             Select Specialization
           </option>
           {specializationList &&
